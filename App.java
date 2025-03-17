@@ -7,27 +7,31 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] args) {
-        double start = System.currentTimeMillis();
+        // double start = System.currentTimeMillis();
 
-        int count = 1;
-        while (count < (1003917915 * 100)) {
-            count++;
+        // int count = 1;
+        // while (count < (1003917915 * 100)) {
+        // count++;
+        // }
+
+        // double elapsed = System.currentTimeMillis() - start;
+        // System.out.println((elapsed / 1000));
+
+        for (int i = 0; i < encontraFatoresPrimos().size(); i++) {
+            System.out.println(encontraFatoresPrimos().get(i));
         }
-
-        double elapsed = System.currentTimeMillis() - start;
-        System.out.println((elapsed / 1000));
     }
 
-    public ArrayList<Integer> encontraFatoresPrimos() {
+    public static ArrayList<Integer> encontraFatoresPrimos() {
         ArrayList<Integer> fatoresPrimos = new ArrayList<>();
-        int numComposto = 10;
+        int numComposto = 66;
         int fator = 2;
         int divisores = 0;
         int divisor = 1;
 
-        while (fator < numComposto) {
+        while (fator <= numComposto) {
             // Descobre se eh primo
-            while (divisor < fator) {
+            while (divisor <= fator) {
                 if (fator % divisor == 0) {
                     divisores++;
                 }
