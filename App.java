@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class App {
 
@@ -66,17 +67,16 @@ public class App {
 
     public static void modaCaractere() {
         String filePath = "T1.txt"; // Substitua pelo caminho do arquivo
-        int[] quantidades = new int[26];
+        HashMap<Character, Integer> map = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 // System.out.println(linha);
                 for (int i = 0; i < linha.length(); i++) {
-                    for (int j = i; j < linha.length(); j++) {
-
-                    }
-                    // linha = linha.replace(linha.charAt(i), "");
+                    char c = linha.charAt(i);
+                    int count = map.get(c);
+                    map.put(c, count);
                 }
             }
         } catch (IOException e) {
