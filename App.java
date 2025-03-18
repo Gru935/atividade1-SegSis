@@ -1,14 +1,18 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class App {
 
     public static void main(String[] args) {
         // System.out.println(contaTempo(1003917915 * 100));
-        System.out.print("(");
-        for (int i = 0; i < encontraFatoresPrimos(1700).size(); i++) {
-            System.out.print(encontraFatoresPrimos(1700).get(i) + ",");
-        }
-        System.out.println(")");
+        // System.out.print("(");
+        // for (int i = 0; i < encontraFatoresPrimos(1700).size(); i++) {
+        // System.out.print(encontraFatoresPrimos(1700).get(i) + ",");
+        // }
+        // System.out.println(")");
+        modaCaractere();
     }
 
     public static double contaTempo(int num) {
@@ -58,5 +62,25 @@ public class App {
             }
         }
         return fatoresPrimos;
+    }
+
+    public static void modaCaractere() {
+        String filePath = "T1.txt"; // Substitua pelo caminho do arquivo
+        int[] quantidades = new int[26];
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                // System.out.println(linha);
+                for (int i = 0; i < linha.length(); i++) {
+                    for (int j = i; j < linha.length(); j++) {
+
+                    }
+                    // linha = linha.replace(linha.charAt(i), "");
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
     }
 }
