@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class App {
 
@@ -13,7 +14,7 @@ public class App {
         // System.out.print(encontraFatoresPrimos(1700).get(i) + ",");
         // }
         // System.out.println(")");
-        modaCaractere();
+        System.out.println(contagemCaracteres());
     }
 
     public static double contaTempo(int num) {
@@ -65,22 +66,28 @@ public class App {
         return fatoresPrimos;
     }
 
-    public static void modaCaractere() {
-        String filePath = "T1.txt"; // Substitua pelo caminho do arquivo
+    public static String contagemCaracteres() {
+        String filePath = "T7.txt"; // Substitua pelo caminho do arquivo
         HashMap<Character, Integer> map = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String linha;
             while ((linha = br.readLine()) != null) {
-                // System.out.println(linha);
                 for (int i = 0; i < linha.length(); i++) {
                     char c = linha.charAt(i);
-                    int count = map.get(c);
-                    map.put(c, count);
+                    Integer count = map.get(c);
+                    if (count == null) {
+                        map.put(c, 1);
+                    } else {
+                        map.put(c, count + 1);
+                    }
                 }
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
+        ArrayList<Map.Entry<Character, Integer>> lista = new ArrayList<>(map.entrySet());
+        lista.sort(Map.Entry.comparingByValue());
+        return lista.toString();
     }
 }
