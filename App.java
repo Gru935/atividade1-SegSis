@@ -14,7 +14,8 @@ public class App {
         // System.out.print(encontraFatoresPrimos(1700).get(i) + ",");
         // }
         // System.out.println(")");
-        System.out.println(contagemCaracteres());
+        System.out.println(contagemCaracteres("T1.txt").toString());
+        System.out.println(indiceCoincidencia(contagemCaracteres("T1.txt")));
     }
 
     public static double contaTempo(int num) {
@@ -66,8 +67,8 @@ public class App {
         return fatoresPrimos;
     }
 
-    public static String contagemCaracteres() {
-        String filePath = "T7.txt"; // Substitua pelo caminho do arquivo
+    public static ArrayList<Map.Entry<Character, Integer>> contagemCaracteres(String file) {
+        String filePath = file; // Substitua pelo caminho do arquivo
         HashMap<Character, Integer> map = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -88,6 +89,24 @@ public class App {
         }
         ArrayList<Map.Entry<Character, Integer>> lista = new ArrayList<>(map.entrySet());
         lista.sort(Map.Entry.comparingByValue());
-        return lista.toString();
+        return lista;
+    }
+
+    public static double indiceCoincidencia(ArrayList<Map.Entry<Character, Integer>> lista) {
+        double indice = 0.0;
+
+        double n = 0.0;
+        for (int i = 0; i < lista.size(); i++) {
+            n += lista.get(i).getValue();
+        }
+
+        double somatorio = 0.0;
+        for (int i = 0; i < lista.size(); i++) {
+            double fi = lista.get(i).getValue();
+            somatorio += fi * (fi - 1);
+        }
+
+        indice = somatorio / (n * (n - 1));
+        return indice;
     }
 }
